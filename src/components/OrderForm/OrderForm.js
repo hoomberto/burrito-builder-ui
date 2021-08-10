@@ -6,7 +6,8 @@ const OrderForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    this.clearInputs();
+    if (ingredients.length < 1) return
+    clearInputs();
     // POST here probably, followed by a get
   }
 

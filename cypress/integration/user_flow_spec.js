@@ -5,7 +5,6 @@ describe('User Flow', () => {
     cy.visit('localhost:3000/')
   })
 
-
   it('User should be able to enter their name into input field', () => {
     cy.get('input').type('Siri')
     cy.get('input').should('have.value', 'Siri')
@@ -34,11 +33,10 @@ describe('User Flow', () => {
   })
 
   it('User should be able to submit an order after entering their name and selecting at least one ingredient', () => {
-    cy.intercept('http://localhost:3001/api/v1/orders')
     cy.intercept('POST', 'http://localhost:3001/api/v1/orders', {
       statusCode: 201,
       body: {
-        name: 'Successful post',
+        name: 'Successful',
         ingredients: ['test1', 'test2', 'test3']
       }
     })

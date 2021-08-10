@@ -15,7 +15,7 @@
     },
     {
       "id": 2,
-      "name": "Person2",
+      "name": "PersonB",
       "ingredients":
       [
         "beans",
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "name": "Someone else",
+      "name": "PersonC",
       "ingredients":
       [
         "beans",

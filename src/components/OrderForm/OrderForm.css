@@ -1,0 +1,21 @@
+.buttons-ctr {
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  padding: 10px;
+  grid-gap: 2em;
+  align-items: center;
+}
+
+input {
+  width: 40%;
+  padding-right: -10px;
+  height: 20px;
+  align-self: center;
+}
+
+.input-btns-ctr {
+  display: flex;
+  padding: 20px;
+}

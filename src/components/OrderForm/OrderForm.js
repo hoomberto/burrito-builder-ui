@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { renderIngredientButtons } from '../../utilities/utils'
 import { getOrders, postOrder } from '../../apiCalls'
+import './OrderForm.css'
+
 
 const OrderForm = ({ update }) => {
   const [name, setName] = useState('')
@@ -39,16 +41,16 @@ const OrderForm = ({ update }) => {
 
   return (
     <form>
-      <input
-        type='text'
-        placeholder='Name'
-        name='name'
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-
-    { renderIngredientButtons(handleIngredientChange) }
-
+      <div className="input-btns-ctr">
+        <input
+          type='text'
+          placeholder='Name'
+          name='name'
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <div className="buttons-ctr">{ renderIngredientButtons(handleIngredientChange) }</div>
+      </div>
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
       <button id="submitBtn" onClick={e => handleSubmit(e)}>

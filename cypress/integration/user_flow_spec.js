@@ -17,4 +17,10 @@ describe('User Flow', () => {
     cy.get('input').type('Siri')
     cy.get('input').should('have.value', 'Siri')
   })
+
+  it('User should be presented with an error if trying to submit form without selected ingredients', () => {
+    cy.get('input').type('Siri')
+    cy.get('#submitBtn').click()
+    cy.contains('Please make sure your name is entered and at least one ingredient is selected.')
+  })
 })

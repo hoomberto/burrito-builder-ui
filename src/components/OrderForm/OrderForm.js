@@ -51,7 +51,7 @@ const OrderForm = ({ update }) => {
 
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
-      <button onClick={e => handleSubmit(e)}>
+      <button id="submitBtn" onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
       {!userWarning ? null : <h3>Please make sure your name is entered and at least one ingredient is selected.</h3>}

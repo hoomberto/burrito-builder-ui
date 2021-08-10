@@ -26,7 +26,7 @@ const App = () => {
         <h1>Burrito Builder</h1>
         <OrderForm update={update} />
       </header>
-      <Orders orders={!orders ? false : orders} />
+      <Orders orders={!orders ? false : orders} update={update}/>
     </main>
   )
 }

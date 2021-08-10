@@ -1,11 +1,11 @@
 import React from 'react';
-import { deleteOrder, getOrders } from '../../apiCalls'
+import { deleteOrder } from '../../apiCalls'
 import './Orders.css';
 
 const Orders = ({ orders, update }) => {
 
   const updateOrders = (id) => {
-    let updated = orders.filter(order => order.id != parseInt(id))
+    let updated = orders.filter(order => order.id !== parseInt(id))
     update(updated)
   }
 

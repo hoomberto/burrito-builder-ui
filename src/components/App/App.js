@@ -21,35 +21,10 @@ const App = () => {
       <header>
         <h1>Burrito Builder</h1>
         <OrderForm />
-        <Orders orders={!orders ? false : orders} />
       </header>
+      <Orders orders={!orders ? false : orders} />
     </main>
   )
 }
-
-// class App extends Component {
-//   constructor(props) {
-//     super();
-//   }
-//
-//   // componentDidMount() {
-//   //   getOrders()
-//   //     .catch(err => console.error('Error fetching:', err));
-//   // }
-//
-//   render() {
-//     return (
-//       <main className="App">
-//         <header>
-//           <h1>Burrito Builder</h1>
-//           <OrderForm />
-//         </header>
-//
-//         <Orders orders={this.state.orders}/>
-//       </main>
-//     );
-//   }
-// }
-
 
 export default App;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState } from 'react';
+import { postOrder } from '../../apiCalls'
 
 const OrderForm = () => {
   const [name, setName] = useState('')
@@ -6,7 +7,7 @@ const OrderForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (ingredients.length < 1 || !name) alert("STOP") return
+    if (ingredients.length < 1 || !name) return
     clearInputs();
     // POST here probably, followed by a get
   }

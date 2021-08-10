@@ -8,7 +8,7 @@ export const postOrder = (order) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
     body: JSON.stringify(order)
   })
   .then(response => response.json())

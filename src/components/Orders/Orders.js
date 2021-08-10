@@ -20,7 +20,7 @@ const Orders = ({ orders }) => {
   }
 
   return (
-    <section>
+    <section id="orderSection">
       { orderEls ? orderEls : <p>No orders yet!</p> }
     </section>
   )

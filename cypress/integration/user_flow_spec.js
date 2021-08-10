@@ -23,4 +23,12 @@ describe('User Flow', () => {
     cy.get('#submitBtn').click()
     cy.contains('Please make sure your name is entered and at least one ingredient is selected.')
   })
+
+  it('User should be able to select ingredients and see them render as they are being added to order list', () => {
+    cy.get('#carnitas').click()
+    cy.get('#orderSection').contains('carnitas')
+    cy.get('button:nth-of-type(2)').click()
+    cy.contains('Order: carnitas, steak')
+  })
+
 })

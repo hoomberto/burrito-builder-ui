@@ -8,6 +8,10 @@ import OrderForm from '../../components/OrderForm/OrderForm';
 const App = () => {
   const [orders, setOrders] = useState('')
 
+  const update = (data) => {
+    setOrders(data)
+  }
+
   useEffect(() => {
     const setData = async() => {
       let data = await getOrders().catch(err => console.error('Error fetching:', err))
@@ -20,7 +24,7 @@ const App = () => {
     <main className="App">
       <header>
         <h1>Burrito Builder</h1>
-        <OrderForm />
+        <OrderForm update={update} />
       </header>
       <Orders orders={!orders ? false : orders} />
     </main>

@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import { postOrder } from '../../apiCalls'
+import { renderIngredientButtons } from '../../utilities/utils'
+import { getOrders, postOrder } from '../../apiCalls'
 
-const OrderForm = () => {
+const OrderForm = ({ update }) => {
   const [name, setName] = useState('')
   const [ingredients, setIngredients] = useState([])
+  const [userWarning, setUserWarning] = useState(false)
+
+  const updateOrders = async () => {
+    let data = await getOrders().catch(err => console.error('Error fetching:', err))
+    update(data.orders)
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (ingredients.length < 1 || !name) return
+    if (ingredients.length < 1 || !name) return setUserWarning(true)
+    let newOrder = {
+      name,
+      ingredients
+    }
+    postOrder(newOrder)
+    .then(response => updateOrders())
+    setUserWarning(false)
     clearInputs();
-    // POST here probably, followed by a get
   }
 
   const clearInputs = () => {
@@ -24,17 +37,6 @@ const OrderForm = () => {
     }
   }
 
-  const renderIngredientButtons = () => {
-    const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
-    return possibleIngredients.map(ingredient => {
-      return (
-        <button key={ingredient} name={ingredient} onClick={e => handleIngredientChange(e)}>
-          {ingredient}
-        </button>
-      )
-    });
-  }
-
   return (
     <form>
       <input
@@ -45,68 +47,16 @@ const OrderForm = () => {
         onChange={e => setName(e.target.value)}
       />
 
-    { renderIngredientButtons() }
+    { renderIngredientButtons(handleIngredientChange) }
 
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
       <button onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
+      {!userWarning ? null : <h3>Please make sure your name is entered and at least one ingredient is selected.</h3>}
     </form>
   )
 }
-
-
-// class OrderForm extends Component {
-//   constructor(props) {
-//     super();
-//     this.props = props;
-//     this.state = {
-//       name: '',
-//       ingredients: []
-//     };
-//   }
-//
-//
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     this.clearInputs();
-//   }
-//
-//   clearInputs = () => {
-//     this.setState({name: '', ingredients: []});
-//   }
-//
-//   render() {
-    // const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
-    // const ingredientButtons = possibleIngredients.map(ingredient => {
-    //   return (
-    //     <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
-    //       {ingredient}
-    //     </button>
-    //   )
-    // });
-//
-    // return (
-    //   <form>
-    //     <input
-    //       type='text'
-    //       placeholder='Name'
-    //       name='name'
-    //       value={this.state.name}
-    //       onChange={e => this.handleNameChange(e)}
-    //     />
-    //
-    //     { ingredientButtons }
-    //
-    //     <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
-    //
-    //     <button onClick={e => this.handleSubmit(e)}>
-    //       Submit Order
-    //     </button>
-    //   </form>
-    // )
-//   }
-// }
 
 export default OrderForm;

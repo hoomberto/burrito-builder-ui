@@ -49,4 +49,14 @@ describe('User Flow', () => {
     })
   })
 
+  it('User should be able to delete an order', () => {
+    cy.intercept('DELETE', 'http://localhost:3001/api/v1/orders', {
+      statusCode: 204
+    })
+    cy.get('.order').should('have.length', 3)
+    cy.get('#3').click()
+    cy.get('.order').should('have.length', 2)
+  })
+
+
 })

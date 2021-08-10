@@ -11,11 +11,15 @@ const OrderForm = () => {
   }
 
   const clearInputs = () => {
-    this.setState({name: '', ingredients: []});
+    setName('')
+    setIngredients([])
   }
 
-  const handleIngredientChange = () => {
-    return
+  const handleIngredientChange = (e) => {
+    e.preventDefault()
+    if (!ingredients.includes(e.target.name)) {
+      setIngredients([...ingredients, e.target.name])
+    }
   }
 
   const renderIngredientButtons = () => {
@@ -29,15 +33,6 @@ const OrderForm = () => {
     });
   }
 
-  const handleNameChange = e => {
-    setName(e.target.value)
-  }
-  // 
-  // const handleSubmit = () => {
-  //   setIngredients()
-  // }
-
-
   return (
     <form>
       <input
@@ -45,7 +40,7 @@ const OrderForm = () => {
         placeholder='Name'
         name='name'
         value={name}
-        onChange={e => handleNameChange(e)}
+        onChange={e => setName(e.target.value)}
       />
 
     { renderIngredientButtons() }

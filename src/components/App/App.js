@@ -8,10 +8,12 @@ import OrderForm from '../../components/OrderForm/OrderForm';
 const App = () => {
   const [orders, setOrders] = useState('')
 
-  useEffect(async () => {
-    let data = await getOrders().catch(err => console.error('Error fetching:', err))
-    console.log(data)
-    setOrders(data.orders)
+  useEffect(() => {
+    const setData = async() => {
+      let data = await getOrders().catch(err => console.error('Error fetching:', err))
+      setOrders(data.orders)
+    }
+    setData()
   }, [])
 
   return (
